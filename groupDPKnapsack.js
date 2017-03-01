@@ -44,18 +44,16 @@ for (var i = 1; i <= MAX_I; i++) {				// 每个分组
 	for (var w = MAX_W; w >= 0; w--) {			// 每次讨论的最大负重，要包括 0
 		for (var k = 1; k <= MAX_K; k++) {		// 每个分组中的每个物品
 			if (goods[i][k].weight <= w) {
-				var v1 = Math.max.apply(null, V[i-1][w]);
-				var v2 = Math.max.apply(null, V[i-1][w - goods[i][k].weight]) + goods[i][k].value;
+				var v1 = Math.max.apply(null, V[i-1][w - goods[i][k].weight]) + goods[i][k].value;
+				var v2 = Math.max.apply(null, V[i-1][w]);
 				if (v1 > v2) {
 					V[i][w][k] = v1;
-					b[i][w][k] = 0;
+					b[i][w][k] = 1;
 				} else {
 					V[i][w][k] = v2;
-					b[i][w][k] = 1;
-					if (Math.max.apply(null, V[i-1][w - goods[i][k].weight]) == 9 && v2 == 29) {
-						console.log(i-1, w - goods[i][k].weight);
-					}
 				}
+			} else {
+				V[i][w][k] = Math.max.apply(null, V[i-1][w]);
 			}
 		}
 	}

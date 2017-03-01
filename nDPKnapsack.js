@@ -11,7 +11,7 @@
 // w:重量
 // n:数量
 var MAX_I = 4, MAX_W = 6, MAX_N = 2, MAX_V = 20;
-console.log("\n【Sample】 \ntotal limit: %d, overload: %d", MAX_N, MAX_W);
+console.log("\n【Sample】 \nlimit: %d, overload: %d", MAX_N, MAX_W);
 
 // 随机生成物品数据，数组放弃下标0
 var goods = new Array(MAX_I + 1);
@@ -45,10 +45,9 @@ for (var i = 0; i <= MAX_I; i++) {
 for (var i = 1; i <= MAX_I; i++) {
 	for (var w = MAX_W; w >= 0; w--) {
 		for (var n = MAX_N; n >= 0; n--) {
-			if (goods[i].weight > w || (goods[i].weight <= w && goods[i].num > n)) {
+			if (goods[i].weight > w || goods[i].num > n) {
 				// goods[i]超重，或者不超重但超数，一定放不下，和放之前一样
 				V[i][w][n] = V[i-1][w][n];
-				b[i][w][n] = 0;
 			} else {
 				// 未超重且未超数，要看看怎么和其他东西搭配
 				var v1 = V[i-1][w-goods[i].weight][n-goods[i].num] + goods[i].value;
@@ -58,7 +57,6 @@ for (var i = 1; i <= MAX_I; i++) {
 					b[i][w][n] = 1;
 				} else {
 					V[i][w][n] = v2;
-					b[i][w][n] = 0;
 				}
 			}
 		}

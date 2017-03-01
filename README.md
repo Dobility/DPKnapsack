@@ -9,3 +9,9 @@
 
 # nDPKnapsack.js
 带有数量限制的01背包
+
+# nGroupDPKnapsack.js
+以上三种问题的合并
+
+# aDPKnapsack.js
+完全背包问题
