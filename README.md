@@ -13,5 +13,8 @@
 # nGroupDPKnapsack.js
 以上三种问题的合并
 
+# 2DPKnapsack.js
+二维背包问题
+
 # aDPKnapsack.js
 完全背包问题
